@@ -1,9 +1,11 @@
-var player1 = 'x'; // turn = 0
-var player2 = 'o'; // turn = 1
-var turn = 0; //starts with player1
+// VARIABLES
+
+var player1 = 'x'; 
+var player2 = 'o';
+var turn = 0;
 
 var boardCheck; // function to check value in each cell
-var a1; // value within each cell but how to build the board???
+var a1; // value within each cell
 var a2;
 var a3;
 var b1;
@@ -14,14 +16,104 @@ var c2;
 var c3;
 
 var checkWin;
-var xWin = false; // true if X wins
-var oWin = false; // true if O wins
-var winAlert; // function that declares winner and restarts game
+var xWin = false;
+var oWin = false;
+var winAlert;
 
 var newGame;
 var clearBoard;
 
-var newGame = function() {
-  
-}
- //if else statement and toggling for player one to put the 'x' and player 2 to put the 'o'?
+var newGame = function () {
+    $('td').one('click', function (event) {
+        if (turn == 0) {
+            $(this).text(player1);
+            boardCheck();
+            checkWin();
+            turn = 1;
+        } else {
+            $(this).text(player2);
+            boardCheck();
+            checkWin();
+            turn = 0;
+        }
+    });
+};
+
+
+// INITIALIZES GAME
+$(document).ready(function () {
+    newGame();
+});
+
+boardCheck = function () {
+    a1 = $('#a1').html();
+    a2 = $('#a2').html();
+    a3 = $('#a3').html();
+    b1 = $('#b1').html();
+    b2 = $('#b2').html();
+    b3 = $('#b3').html();
+    c1 = $('#c1').html();
+    c2 = $('#c2').html();
+    c3 = $('#c3').html();
+};
+
+checkWin = function () {
+    if ((a1 == a2 && a1 == a3 && (a1 == "x")) || //first row
+    (b1 == b2 && b1 == b3 && (b1 == "x")) || //second row
+    (c1 == c2 && c1 == c3 && (c1 == "x")) || //third row
+    (a1 == b1 && a1 == c1 && (a1 == "x")) || //first column
+    (a2 == b2 && a2 == c2 && (a2 == "x")) || //second column
+    (a3 == b3 && a3 == c3 && (a3 == "x")) || //third column
+    (a1 == b2 && a1 == c3 && (a1 == "x")) || //diagonal 1
+    (a3 == b2 && a3 == c1 && (a3 == "x")) //diagonal 2
+    ) {
+        xWin = true;
+        winAlert();
+
+    } else {
+        if ((a1 == a2 && a1 == a3 && (a1 == "o")) || //first row
+        (b1 == b2 && b1 == b3 && (b1 == "o")) || //second row
+        (c1 == c2 && c1 == c3 && (c1 == "o")) || //third row
+        (a1 == b1 && a1 == c1 && (a1 == "o")) || //first column
+        (a2 == b2 && a2 == c2 && (a2 == "o")) || //second column
+        (a3 == b3 && a3 == c3 && (a3 == "o")) || //third column
+        (a1 == b2 && a1 == c3 && (a1 == "o")) || //diagonal 1
+        (a3 == b2 && a3 == c1 && (a3 == "o")) //diagonal 2
+        ) {
+            oWin = true;
+            winAlert();
+
+        } else {
+            if (((a1 == "x") || (a1 == "o")) && ((b1 == "x") || (b1 == "o")) && ((c1 == "x") || (c1 == "o")) && ((a2 == "x") || (a2 == "o")) && ((b2 == "x") || (b2 == "o")) && ((c2 == "x") || (c2 == "o")) && ((a3 == "x") || (a3 == "o")) && ((b3 == "x") || (b3 == "o")) && ((c3 == "x") || (c3 == "o"))) {
+                alert("It's a tie!");
+            }
+        }
+    }
+};
+
+var winAlert = function () {
+    if (xWin == true) {
+        alert("X Wins!");
+    } else {
+        if (oWin == true) {
+            alert("O Wins!");
+        }
+    }
+};
+
+
+//doesnt work
+var clearBoard = $('#restart').click(function (event) {
+    a1 = $('#a1').text("");
+    b1 = $('#b1').text("");
+    c1 = $('#c1').text("");
+    a2 = $('#a2').text("");
+    b2 = $('#b2').text("");
+    c2 = $('#c2').text("");
+    a3 = $('#a3').text("");
+    b3 = $('#b3').text("");
+    c3 = $('#c3').text("");
+    xWin = false;
+    oWin = false;
+    newGame();
+});
