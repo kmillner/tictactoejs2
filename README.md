@@ -1,12 +1,12 @@
-# Project Name
+# Tic Tac Toe
 
-##### _Project Purpose, date 2015_
+##### _Epicodus Project Week 7, Sept 2015_
 
-#### By **Names**
+#### By **Kallen Millner**
 
 ## Description
 
-Description goes here
+Made a tic tac toe app but used a lot of help from existing code therefore I am redoing this project with less help.
 
 ## Setup
 
@@ -23,7 +23,7 @@ Description goes here
 
 ### Legal
 
-Copyright (c) 2015 **NAMES**
+Copyright (c) 2015 **Kallen Millner**
 
 This software is licensed under the MIT license.
 
